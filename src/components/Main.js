@@ -1,37 +1,22 @@
 import React from 'react';
 
-function Main () {
-
-    const popupAvatar = document.querySelector('.popup_edit-avatar');
-
-    function handleEditAvatarClick() {
-        popupAvatar.classList.add('popup_opened');
-    }
-
-    function handleEditProfileClick() {
-
-    }
-
-    function handleAddPlaceClick() {
-
-    }
-
+function Main (props) {
 
     return (
         <main className="content">
             <section className="profile">
                 <div className="profile__info">
                     <img className="profile__avatar" src="../images/profile-avatar.png" alt="Аватар пользователя" />
-                    <button onClick={handleEditAvatarClick} className="profile__avatar-button"></button>
+                    <button onClick={props.onEditAvatar} className="profile__avatar-button"></button>
                 <div className="profile__text-block">
                     <div className="profile__row">
                         <h2 className="profile__name">Жак-Ив Кусто</h2>
-                        <button type="button" className="profile__edit-button" ></button>
+                        <button onClick={props.onEditProfile} type="button" className="profile__edit-button" ></button>
                     </div>
                     <p className="profile__status">Исследователь океана</p>
                 </div>
                 </div>
-            <button type="button" className="profile__add-button"></button>
+            <button type="button" onClick={props.onAddPlace} className="profile__add-button"></button>
             </section>
 
             <section className="elements">
