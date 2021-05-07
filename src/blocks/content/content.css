@@ -1,6 +1,7 @@
 .content {
   margin: 0 auto 66px;
   color: #FFFFFF;
+  min-height: 1112px;
 }
 
 @media screen and (max-width: 890px) {
