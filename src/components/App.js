@@ -1,37 +1,14 @@
+import Header from "./Header";
+import Main from "./Main.js";
+import Footer from './Footer';
 
-import './index.css';
 
 function App() {
   return (
-    <body class="page">
-    <div class="root">
-      <header class="header">
-        <img class="header__logo" src="./images/header-logo.svg" alt="Логотип сайта" / >
-      </header>
-      <main class="content">
-        <section class="profile">
-          <div class="profile__info">
-            <img class="profile__avatar" src="./images/profile-avatar.png" alt="Аватар пользователя" / >
-            <button class="profile__avatar-button"></button>
-            <div class="profile__text-block">
-              <div class="profile__row">
-                <h2 class="profile__name">Жак-Ив Кусто</h2>
-                <button type="button" class="profile__edit-button" ></button>
-              </div>
-              <p class="profile__status">Исследователь океана</p>
-            </div>
-          </div>
-          <button type="button" class="profile__add-button"></button>
-        </section>
-
-        <section class="elements">
-          <ul class="elements__list">
-          </ul>
-        </section>
-      </main>
-      <footer class="footer">
-        <p class="footer__copyright">&copy;2021 Roman Tupikov</p>
-      </footer>
+    <div class="root page">
+      <Header />
+      <Main />
+      <Footer />
 
       <div class="popup popup_type_edit-profile">
         <div class="popup__content">
@@ -97,9 +74,12 @@ function App() {
           <figcaption class="popup__imagecaption"></figcaption>
         </figure>
       </div>
+
     </div>
 
-    <template class="card__template" id="card__template">
+
+
+   /** <template class="card__template" id="card__template">
       <li class="card">
         <img class="card__image" src="#" alt="#" />
         <button type="button" class="card__remove-button"></button>
@@ -110,10 +90,9 @@ function App() {
           </button>
         </div>
       </li>
-    </template>
+    </template> **/
 
-  </body>
-  );
+  )
 }
 
 export default App;
