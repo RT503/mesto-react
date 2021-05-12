@@ -13,6 +13,7 @@ function App() {
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
+
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
     }
@@ -51,7 +52,8 @@ function App() {
             />
             <PopupWithForm
                 name="add-new-card"
-                title="Создать" submitText="Да"
+                title="Создать"
+                submitText="Да"
                 isOpen={isAddPlacePopupOpen}
                 onClose={closeAllPopups}
 
