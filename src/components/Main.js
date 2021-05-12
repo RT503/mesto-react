@@ -1,19 +1,26 @@
 import React from 'react';
+import api from "../utils/Api";
 
 function Main (props) {
+
+    const [userName, setUserName] = React.useState();
+    const [userDescription, setUserDescription] = React.useState("Explorer");
+    const [userAvatar, setUserAvatar] = React.useState({});
+
+
 
     return (
         <main className="content">
             <section className="profile">
-                <div className="profile__info">
+                <div className="profile__info" style={{ backgroundImage: `url(${userAvatar})` }} >
                     <img className="profile__avatar" src="../images/profile-avatar.png" alt="Аватар пользователя" />
                     <button onClick={props.onEditAvatar} className="profile__avatar-button"></button>
                 <div className="profile__text-block">
                     <div className="profile__row">
-                        <h2 className="profile__name">Жак-Ив Кусто</h2>
+                        <h2 className="profile__name">{userName}</h2>
                         <button onClick={props.onEditProfile} type="button" className="profile__edit-button" ></button>
                     </div>
-                    <p className="profile__status">Исследователь океана</p>
+                    <p className="profile__status">{userDescription}</p>
                 </div>
                 </div>
             <button type="button" onClick={props.onAddPlace} className="profile__add-button"></button>
