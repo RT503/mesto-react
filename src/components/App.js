@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useState, useEffect } from 'react';
 import Header from "./Header";
 import Main from "./Main.js";
 import Footer from "./Footer";
@@ -13,6 +13,7 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+    const [cards, setCards] = React.useState([]);
 
 
     function handleEditAvatarClick() {
@@ -26,6 +27,8 @@ function App() {
     function handleAddPlaceClick() {
         setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
     }
+
+
 
     function closeAllPopups() {
         setIsEditProfilePopupOpen(false);
