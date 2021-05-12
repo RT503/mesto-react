@@ -9,22 +9,27 @@ import ImagePopup from "./ImagePopup";
 
 function App() {
 
-    const [isEditProfileOpen, setIsEditProfilePopupOpen] = React.useState(false);
+    const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
     function handleEditAvatarClick() {
-
+        setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
     }
 
     function handleEditProfileClick() {
-
+        setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
     }
 
     function handleAddPlaceClick() {
-
+        setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
     }
 
+    function closeAllPopups() {
+        setIsEditProfilePopupOpen(false);
+        setIsAddPlacePopupOpen(false);
+        setIsEditAvatarPopupOpen(false);
+    }
 
     return (
         <div className="root">
@@ -36,10 +41,36 @@ function App() {
                 onEditAvatar={handleEditAvatarClick}
             />
             <Footer />
-            <PopupWithForm name="delete-card" title="Вы уверены?" submitText="Да"/>
-            <PopupWithForm name="delete-card" title="Вы уверены?" submitText="Да"/>
-            <PopupWithForm name="delete-card" title="Вы уверены?" submitText="Да"/>
-            <PopupWithForm name="delete-card" title="Вы уверены?" submitText="Да"/>
+            <PopupWithForm
+                name="edit-profile"
+                title="Редактировать профиль"
+                submitText="Сохранить"
+                isOpen={isEditProfilePopupOpen}
+                onClose={closeAllPopups}
+
+            />
+            <PopupWithForm
+                name="add-new-card"
+                title="Создать" submitText="Да"
+                isOpen={isAddPlacePopupOpen}
+                onClose={closeAllPopups}
+
+            />
+            <PopupWithForm
+                name="edit-avatar"
+                title="Обновить аватар"
+                submitText="Сохранить"
+                isOpen={isEditAvatarPopupOpen}
+                onClose={closeAllPopups}
+
+            />
+            <PopupWithForm
+                name="popup_confirm"
+                title="Вы уверены?"
+                submitText="Да"
+                onClose={closeAllPopups}
+
+            />
             <ImagePopup />
 
         </div>

@@ -32,7 +32,7 @@
     </div>
 </div>
 
-<div className="popup popup_edit-avatar">
+<div className="popup popup_type_edit-avatar popup_edit-avatar">
     <div className="popup__content">
         <button type="button" className="popup__close"></button>
         <h3 className="popup__title">Обновить аватар</h3>
@@ -52,7 +52,7 @@
     </div>
 </div>
 
-<div className="popup popup_confirm">
+<div className="popup popup_type_popup_confirm popup_confirm">
     <div className="popup__content">
         <button type="button" className="popup__close"></button>
         <h3 className="popup__title">Вы уверены?</h3>
