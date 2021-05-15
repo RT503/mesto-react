@@ -5,6 +5,8 @@ import Main from "./Main.js";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
 
 import api from "../utils/Api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -96,6 +98,14 @@ function App() {
             }).catch((err) => {console.log(err)})
     }
 
+    function handleUpdateAvatar({avatar}) {
+        api.updateAvatar({avatar})
+            .then((data) => {
+                setCurrentUser(data);
+                closeAllPopups()
+            }).catch((err) => console.log(err));
+    }
+
     return (
 
         <CurrentUserContext.Provider value={currentUser}>
@@ -112,53 +122,29 @@ function App() {
                 onCardLike={handleCardLike}
             />
             <Footer/>
+
             <EditProfilePopup
                 isOpen={isEditProfilePopupOpen}
                 onClose={closeAllPopups}
                 onUpdateUser={handleUpdateUser}
             >
-
-
-
             </EditProfilePopup>
 
-            <PopupWithForm
-                name="add-new-card"
-                title="Новое место"
-                submitText="Сохранить"
+            <AddPlacePopup
                 isOpen={isAddPlacePopupOpen}
                 onClose={closeAllPopups}
-
+                onUpda
             >
-                <input type="text" id="placeName" className="popup__input popup__input_type_name" name="name"
-                       placeholder="Название" required minLength="2" maxLength="30"/>
-                <span className="popup__input-error placeName-error"></span>
-                <input type="url" id="placeLink" className="popup__input popup__input_type_picture-link" name="link"
-                       placeholder="Ссылка на картинку" required pattern="https://.*"/>
-                <span className="popup__input-error placeLink-error"></span>
 
-            </PopupWithForm>
 
-            <PopupWithForm
-                name="edit-avatar"
-                title="Обновить аватар"
-                submitText="Сохранить"
+            </AddPlacePopup>
+
+            <EditAvatarPopup
                 isOpen={isEditAvatarPopupOpen}
                 onClose={closeAllPopups}
+                onUpdateAvatar={handleUpdateAvatar}
+            />
 
-            >
-
-                <input
-                    id="avatar"
-                    type="url"
-                    className="popup__input popup__input_type_avatar-link"
-                    name="avatar"
-                    placeholder="Ссылка на картинку"
-                    required
-                />
-                <span className="popup__input-error avatar-error"></span>
-
-            </PopupWithForm>
 
             <PopupWithForm
                 name="popup_confirm"
