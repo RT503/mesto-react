@@ -33,6 +33,7 @@
 @import url("../src/blocks/popup/__submit-button/popup__submit-button.css");
 @import url("../src/blocks/card/__like-button/_active/card__like-button_active.css");
 @import url("../src/blocks/card/__remove-button/card__remove-button.css");
+@import url("../src/blocks/card/__remove-button/_hidden/card__remove-button_hidden.css");
 @import url("../src/blocks/popup/__figure/popup__figure.css");
 @import url("../src/blocks/popup/__imagecaption/popup__imagecaption.css");
 @import url("../src/blocks/popup/__image/popup__image.css");

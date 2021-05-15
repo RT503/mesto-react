@@ -1,9 +1,13 @@
 import React from 'react';
+import { useEffect } from 'react';
 import Header from "./Header";
 import Main from "./Main.js";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
+
+import api from "../utils/Api";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 
 function App() {
@@ -12,6 +16,9 @@ function App() {
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
     const [selectedCard, setSelectedCard] = React.useState(null);
+
+    const [currentUser, setCurrentUser] = React.useState({});
+    const [cards, setCards] = React.useState([]);
 
 
     function handleEditAvatarClick() {
@@ -30,6 +37,34 @@ function App() {
         setSelectedCard(card);
     }
 
+
+    function handleCardDelete(card) {
+        console.log(card);
+        api.deleteCard(card)
+            .then(() => {
+                const newCards = cards.filter((c) => c._id !== card._id);
+                setCards(newCards);
+                closeAllPopups()
+            })
+            .catch((err) => console.log(`Ошибка удаления карточки ${err}`));
+    }
+
+    function handleCardLike(card) {
+        console.log(card);
+        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        api.changeLikeCardStatus(card._id, !isLiked)
+            .then((newCard) => {
+                const newCards = cards.map((c) => c._id === card._id ? newCard : c)
+
+        setCards(newCards);
+    }
+
+)
+.
+    catch((err) => console.log(`Ошибка ${err}`));
+}
+
+
     function closeAllPopups() {
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
@@ -37,7 +72,26 @@ function App() {
         setSelectedCard(false);
     }
 
+    useEffect(() => {
+        Promise.resolve(api.getUserInfo())
+            .then ((info) => {
+                setCurrentUser(info);
+            })
+    }, [])
+
+    useEffect(() => {
+        Promise.resolve(api.getCards())
+            .then((data) => {
+                setCards(data);
+            })
+            .catch((err) => {
+                console.log(`Ошибка ${err}`);
+            })
+    }, [])
+
     return (
+
+        <CurrentUserContext.Provider value={currentUser}>
         <div className="root">
 
             <Header/>
@@ -46,6 +100,9 @@ function App() {
                 onAddPlace={handleAddPlaceClick}
                 onEditAvatar={handleEditAvatarClick}
                 onCardClick={handleCardClick}
+                cards={cards}
+                onCardDelete={handleCardDelete}
+                onCardLike={handleCardLike}
             />
             <Footer/>
             <PopupWithForm
@@ -118,6 +175,7 @@ function App() {
             />
 
         </div>
+            </CurrentUserContext.Provider>
     )
 }
 
