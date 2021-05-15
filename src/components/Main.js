@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import api from "../utils/Api";
 import Card from './Card';
 
@@ -15,15 +15,17 @@ function Main(props) {
                 api.getCards()
             ])
                 .then(([info, cards]) => {
-                    console.log(cards);
+
 
                     const data = cards.map((item) => {
                         return {
+                            card: item,
                             id: item._id,
                             src: item.link,
                             title: item.name,
                             owner: item.owner,
-                            likes: item.likes
+                            likes: item.likes,
+
                         }
                     })
 
@@ -59,7 +61,7 @@ function Main(props) {
 
             <section className="elements">
                 <ul className="elements__list">
-                    {cards.map(card => <Card  Key={card.id} {...card}/>)}
+                    {cards.map(card => <Card key={card.id} onCardClick={props.onCardClick} {...card}/>)}
 
                 </ul>
             </section>
