@@ -8,6 +8,7 @@ import ImagePopup from "./ImagePopup";
 
 import api from "../utils/Api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import EditProfilePopup from "./EditProfilePopup";
 
 
 function App() {
@@ -69,7 +70,7 @@ function App() {
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
         setIsEditAvatarPopupOpen(false);
-        setSelectedCard(false);
+        setSelectedCard(null);
     }
 
     useEffect(() => {
@@ -105,23 +106,16 @@ function App() {
                 onCardLike={handleCardLike}
             />
             <Footer/>
-            <PopupWithForm
-                name="edit-profile"
-                title="Редактировать профиль"
-                submitText="Сохранить"
+            <EditProfilePopup
+
                 isOpen={isEditProfilePopupOpen}
                 onClose={closeAllPopups}
 
             >
 
-                <input type="text" id="profileName" className="popup__input popup__input_type_name" name="name"
-                       placeholder="Имя" required minLength="2" maxLength="40"/>
-                <span className="popup__input-error profileName-error"></span>
-                <input type="text" id="profileStatus" className="popup__input popup__input_type_status" name="status"
-                       placeholder="Обо мне" required minLength="2" maxLength="200"/>
-                <span className="popup__input-error profileStatus-error"></span>
 
-            </PopupWithForm>
+
+            </EditProfilePopup>
 
             <PopupWithForm
                 name="add-new-card"
