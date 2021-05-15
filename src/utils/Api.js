@@ -38,17 +38,14 @@ class Api {
         return Promise.all([this.getUserInfo(), this.getCards()]);
     }
 
-    patchUserInfo(values) {
+    patchUserInfo({name, about}) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
             headers: {
                 authorization: this._token,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                name: values.name,
-                about: values.status
-            })
+            body: JSON.stringify({name, about})
         })
             .then(this._checkResponseData);
     }

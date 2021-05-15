@@ -61,10 +61,8 @@ function App() {
     }
 
 )
-.
-    catch((err) => console.log(`Ошибка ${err}`));
+            .catch((err) => console.log(`Ошибка ${err}`));
 }
-
 
     function closeAllPopups() {
         setIsEditProfilePopupOpen(false);
@@ -90,6 +88,14 @@ function App() {
             })
     }, [])
 
+    function handleUpdateUser({name, about}){
+        api.patchUserInfo({name, about})
+            .then((data) => {
+                setCurrentUser(data);
+                closeAllPopups();
+            }).catch((err) => {console.log(err)})
+    }
+
     return (
 
         <CurrentUserContext.Provider value={currentUser}>
@@ -107,10 +113,9 @@ function App() {
             />
             <Footer/>
             <EditProfilePopup
-
                 isOpen={isEditProfilePopupOpen}
                 onClose={closeAllPopups}
-
+                onUpdateUser={handleUpdateUser}
             >
 
 
