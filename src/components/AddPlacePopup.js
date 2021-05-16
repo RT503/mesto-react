@@ -3,27 +3,27 @@ import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup(props) {
 
-        const [name, setName] = React.useState('');
-        const [link, setLink] = React.useState('');
+    const [name, setName] = React.useState('');
+    const [link, setLink] = React.useState('');
 
-        function handleChangeName(evt) {
-            setName(evt.target.value);
-        }
+    function handleChangeName(evt) {
+        setName(evt.target.value);
+    }
 
-        function handleChangeLink(evt) {
-            setLink(evt.target.value);
-        }
+    function handleChangeLink(evt) {
+        setLink(evt.target.value);
+    }
 
-        function handleSubmit(evt) {
-            evt.preventDefault();
+    function handleSubmit(evt) {
+        evt.preventDefault();
 
-            props.onAddPlace({name, link});
+        props.onAddPlace({name, link});
 
-            setTimeout(() => {
-                setName('');
-                setLink('');
-            }, 700)
-        }
+        setTimeout(() => {
+            setName('');
+            setLink('');
+        }, 700)
+    }
 
 
     return (
@@ -56,6 +56,6 @@ function AddPlacePopup(props) {
             <span className="popup__input-error placeLink-error"/>
         </PopupWithForm>
     )
-    }
+}
 
 export default AddPlacePopup;

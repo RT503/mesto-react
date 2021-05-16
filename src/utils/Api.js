@@ -50,7 +50,7 @@ class Api {
             .then(this._checkResponseData);
     }
 
-    postCard(cardData) {
+    postCard( {name, link} ) {
         return fetch(`${this._url}/cards`, {
             method: 'POST',
             headers: {
@@ -58,8 +58,8 @@ class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: cardData.name,
-                link: cardData.link
+                name: name,
+                link: link
             })
         })
             .then(this._checkResponseData);
