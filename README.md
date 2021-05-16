@@ -1,3 +1,18 @@
+## MESTO-REACT by RT503
+---
+Mesto-react - проектная работа с использованием React. Сервис представляет собой страницу пользователя, содержащую список мест-путешествий.
+
+
+// ### GitHub Pages: https://rt503.github.io/mesto/
+
+## В проекте использованы: 
+
+* Html
+* Css
+* Git
+* JavaScript
+* React
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
