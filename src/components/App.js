@@ -19,30 +19,27 @@ function App() {
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
     const [selectedCard, setSelectedCard] = React.useState(null);
-
     const [currentUser, setCurrentUser] = React.useState({});
     const [cards, setCards] = React.useState([]);
 
 
     function handleEditAvatarClick() {
-        setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
+        setIsEditAvatarPopupOpen(true);
     }
 
     function handleEditProfileClick() {
-        setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
+        setIsEditProfilePopupOpen(true);
     }
 
     function handleAddPlaceClick() {
-        setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
+        setIsAddPlacePopupOpen(true);
     }
 
     function handleCardClick(card) {
         setSelectedCard(card);
     }
 
-
     function handleCardDelete(card) {
-        console.log(card);
         api.deleteCard(card)
             .then(() => {
                 const newCards = cards.filter((c) => c._id !== card._id);
@@ -53,13 +50,10 @@ function App() {
     }
 
     function handleCardLike(card) {
-        console.log(card);
         const isLiked = card.likes.some(i => i._id === currentUser._id);
         api.changeLikeCardStatus(card._id, !isLiked)
             .then((newCard) => {
-                    const newCards = cards.map((c) => c._id === card._id ? newCard : c)
-
-                    setCards(newCards);
+                setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c))
                 }
             )
             .catch((err) => console.log(`Ошибка ${err}`));
@@ -73,14 +67,15 @@ function App() {
     }
 
     useEffect(() => {
-        Promise.resolve(api.getUserInfo())
+        api.getUserInfo()
             .then((info) => {
                 setCurrentUser(info);
             })
+            .catch((err) => console.log(`Ошибка ${err}`))
     }, [])
 
     useEffect(() => {
-        Promise.resolve(api.getCards())
+       api.getCards()
             .then((data) => {
                 setCards(data);
             })
